@@ -6,7 +6,7 @@
    </label>
    
    <select id= "Stocks" name="Stocks"
-        [(ngModel)]="Stocks" class="form-control">
+        [(ngModel)]="Stocks" (change)="navigateTo()" class="form-control">
    
         <option *ngFor=" let sto of stocks" [value] = "sto.id">
             {{sto.name}}

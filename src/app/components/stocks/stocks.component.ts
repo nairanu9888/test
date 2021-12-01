@@ -25,7 +25,7 @@ export class StocksComponent implements OnInit {
   frameworkComponents: any;
 
   constructor(private dialog: MatDialog,
-    private http: HttpService) { 
+    private http: HttpService, private router: Router) { 
       this.frameworkComponents = {
         btnCellRenderer: BtnCellRenderer,
         chartBtnRenderer: ChartBtnRenderer
@@ -107,6 +107,10 @@ export class StocksComponent implements OnInit {
     
     // dialogConfig.disableClose = true;
    
+  }
+
+  navigateTo() {
+    this.router.navigate(['/sinfo'])
   }
   
 
