@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="heading">
+      <h1 mat-dialog-title>{{symbol}} Charts</h1>
+  </div>
+  <div class="indSelect">
+    <mat-form-field appearance="fill">
+        <mat-label>Select indicator</mat-label>
+        <mat-select [(ngModel)]="selectedIndicator" name="indicator">
+          <mat-option *ngFor="let ind of indicators" [value]="ind.value">
+            {{ind.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+</div>
+
+<mat-dialog-content>
+  <div id="chart">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [yaxis]="chartOptions.yaxis"
+      [title]="chartOptions.title"
+    ></apx-chart>
+  </div>
+  <div *ngIf="selectedIndicator=='rsi'" id="lineChart">
+    <apx-chart
+      [series]="rsiChartOptions.series"
+      [chart]="rsiChartOptions.chart"
+      [dataLabels]="rsiChartOptions.dataLabels"
+      [markers]="rsiChartOptions.markers"
+      [title]="rsiChartOptions.title"
+      [fill]="rsiChartOptions.fill"
+      [yaxis]="rsiChartOptions.yaxis"
+      [xaxis]="rsiChartOptions.xaxis"
+      [tooltip]="rsiChartOptions.tooltip"
+      [annotations]="rsiChartOptions.annotations"
+      [autoUpdateSeries]="true"
+    ></apx-chart>
+  </div>
+  <div *ngIf="selectedIndicator=='macd'" id="macdChart">
+      <apx-chart
+        [series]="macdChartOptions.series"
+        [chart]="macdChartOptions.chart"
+        [xaxis]="macdChartOptions.xaxis"
+        [stroke]="macdChartOptions.stroke"
+        [tooltip]="macdChartOptions.tooltip"
+        [dataLabels]="macdChartOptions.dataLabels"
+        [legend]="macdChartOptions.legend"
+        [markers]="macdChartOptions.markers"
+        [grid]="macdChartOptions.grid"
+        [yaxis]="macdChartOptions.yaxis"
+        [title]="macdChartOptions.title"
+      ></apx-chart>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <!-- <button class="mat-raised-button mat-primary"(click)="save()">Save</button> -->
+</mat-dialog-actions>
